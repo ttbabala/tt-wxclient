@@ -13,13 +13,29 @@ App({
     }else{
       //调用登录接口
       wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+          success: function (res) {
+            if(res.code){
+              wx.request({
+                url: 'https://root.com/case/manage/weixin/onlogin',
+                data: {
+                  code: res.code
+                },
+                header: {
+                  'content-type': 'application/json'
+                },
+                success: function(info){
+                  wx.setStorage({
+                    key: '3rdsession',
+                    data: info.data,
+                    success: function(res){
+                      console.log('success');
+                    }
+                  })
+                }
+              })
+            }else{
+              console.log('获取用户登录态失败！' + res.errmsg)
             }
-          })
         }
       })
     }

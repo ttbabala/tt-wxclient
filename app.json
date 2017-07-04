@@ -2,7 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/here/index"
+    "pages/here/index",
+    "pages/there/index",
+    "pages/myinfo/index"
   ],
   "tabBar": {
     "list": [{
@@ -10,13 +12,19 @@
       "text": "首页"
     }, {
       "pagePath": "pages/here/index",
-      "text": "我在这"
+      "text": "我在这儿"
+    }, {
+      "pagePath": "pages/there/index",
+      "text": "我去那儿"
+    },{
+      "pagePath": "pages/myinfo/index",
+      "text": "我"
     }]
   },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "此 刻",
     "navigationBarTextStyle":"black"
   }
 }
