@@ -64,6 +64,7 @@ App({
                                             'content-type': 'application/json'
                                           },
                                           success:function(res){
+                                            that.globalData.userInfo = res.data;
                                             console.log(res.data);
                                           }
                                       })
@@ -89,6 +90,6 @@ App({
   },
   globalData:{
     userInfo:null,
-    url:'https://root.com/tt-server/manage/weixin/onlogin'
+    url:'https://root.com/tt-server/manage/weixin/onlogin',
   }
 })
