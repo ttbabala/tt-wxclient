@@ -9,16 +9,24 @@
   "tabBar": {
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "首页"
+      "text": "首页",
+      "iconPath":"images/wxb.png",
+      "selectedIconPath":"images/wxb-hover.png"
     }, {
       "pagePath": "pages/here/index",
-      "text": "我在这儿"
+      "text": "我在这儿",
+      "iconPath":"images/here.png",
+      "selectedIconPath":"images/here-hover.png"
     }, {
       "pagePath": "pages/there/index",
-      "text": "我去那儿"
+      "text": "我去那儿",
+      "iconPath":"images/there.png",
+      "selectedIconPath":"images/there-hover.png"
     },{
       "pagePath": "pages/myinfo/index",
-      "text": "我"
+      "text": "我",
+      "iconPath":"images/my.png",
+      "selectedIconPath":"images/my-hover.png"
     }]
   },
   "window":{

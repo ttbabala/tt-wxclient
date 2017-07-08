@@ -1,0 +1,4 @@
+/**here -> index.wxss**/
+.section {
+    margin-left:3px;
+}
