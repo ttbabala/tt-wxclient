@@ -29,6 +29,9 @@ Page({
   //事件处理函数
   onLoad: function(){
     var that = this
+    wx.setNavigationBarTitle({
+      title: '我去那儿'
+    })
     wx.checkSession({
         success: function(){
             that.setData({

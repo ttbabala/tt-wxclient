@@ -1,4 +1,5 @@
 /**here -> index.wxss**/
 .section {
-    margin-left:3px;
+    margin-left:5rpx;
+    margin-top:10rpx;
 }

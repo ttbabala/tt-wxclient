@@ -29,10 +29,10 @@
       "selectedIconPath":"images/my-hover.png"
     }]
   },
-  "window":{
+    "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#5D5D5E",
     "navigationBarTitleText": "此 刻",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   }
 }
