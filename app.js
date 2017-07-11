@@ -16,7 +16,7 @@ App({
           success: function (res) {
             if(res.code){
               wx.request({
-                url: that.globalData.url,
+                url: 'https://root.com/tt-server/manage/weixin/codeGetSession3rd',
                 data: {
                   code: res.code
                 },
@@ -24,35 +24,31 @@ App({
                   'content-type': 'application/json'
                 },
                 success: function(info){
-                  wx.setStorage({
-                    key: '3rdsession',
-                    data: info.data,
-                    success: function(res){
-                      wx.getStorage({
-                        key: '3rdsession',
-                        success: function(res){
-                          console.log(res.data);
-                          wx.request({
-                            url: that.globalData.url,
-                            data:{
-                              se3 : res.data
-                            },
-                            header:{
-                              'content-type': 'application/json'
-                            },
-                            success: function(res_sk){
-                              if(res_sk.data !== 0){
-                                  wx.getUserInfo({
-                                    withCredentials: true,
-                                    success: function(res){
-                                      that.globalData.userInfo = res.userInfo
-                                      var sessionKey = res_sk.data
-                                      var rawData = res.rawData
-                                      var signature = res.signature
-                                      var encryptedData = res.encryptedData
-                                      var iv = res.iv
-                                      wx.request({
-                                          url:that.globalData.url,
+                  console.log(info.data)
+                  wx.setStorageSync('3rdsession',info.data);                 
+                  var session3rd = wx.getStorageSync('3rdsession');
+                  wx.request({
+                        url: 'https://root.com/tt-server/manage/weixin/getSe3',
+                        data:{
+                             se3 : session3rd
+                        },
+                        header:{
+                            'content-type': 'application/json'
+                        },
+                        success: function(res_sk){
+                          console.log(res_sk.data)
+                          if(res_sk.data !== 0){
+                                wx.getUserInfo({
+                                withCredentials: true,
+                                success: function(res){
+                                  //that.globalData.userInfo = res.userInfo
+                                  var sessionKey = res_sk.data
+                                  var rawData = res.rawData
+                                  var signature = res.signature
+                                  var encryptedData = res.encryptedData
+                                  var iv = res.iv
+                                  wx.request({
+                                          url: 'https://root.com/tt-server/manage/weixin/onLogin',
                                           data: {
                                             sessionKey:sessionKey,
                                             rawData:rawData,
@@ -64,9 +60,9 @@ App({
                                             'content-type': 'application/json'
                                           },
                                           success:function(res){
-                                            that.globalData.userInfo = res.data;
-                                            console.log(res.data);
-                                          }
+                                            that.globalData.userInfo = res.data
+                                            console.log(res.data)
+                                         }
                                       })
                                     }                            
                                   })
@@ -77,10 +73,6 @@ App({
                           })
                         }
                       })
-                    }
-                  }) 
-                }
-              })
             }else{
               console.log('获取用户登录态失败！' + res.errmsg)
             }
@@ -90,6 +82,6 @@ App({
   },
   globalData:{
     userInfo:null,
-    url:'https://root.com/tt-server/manage/weixin/onlogin',
+    //url:'https://root.com/tt-server/manage/weixin/onlogin',
   }
 })
