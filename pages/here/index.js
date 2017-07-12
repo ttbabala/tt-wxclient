@@ -56,19 +56,49 @@ Page({
                     longitude: res.longitude,
                     }]
                 })
-              },
-              fail: function(res) {
-                // fail
-              },
-              complete: function(res) {
-                // complete
               }
             })
         },
         fail: function(){
             //登录态过期
-            app.getUserInfo()
+            app.getUserInfo(cb);
         }
+    })
+  },
+  uploadImage:function(){
+    wx.chooseImage({
+      count: 3, // 最多可以选择的图片张数，默认9
+      sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+      success: function(res){
+        console.log(res.tempFilePaths)
+        var tempFilePaths = res.tempFilePaths
+        wx.showToast({
+          icon: "loading",
+          title: "正在上传"
+        })
+        wx.uploadFile({
+          url: 'https://root.com/tt-server/manage/weixin/uploadImg',
+          filePath:tempFilePaths[0],
+          name:'photo',
+          //header:{"content-type":'application/x-www-form-urlencoded'},
+          formData: {
+            'name':encodeURI('name'),
+            'address':encodeURI('address')
+          }, // HTTP 请求中其他额外的 form data
+          success: function(res){
+            console.log(res.errMsg);
+          },
+          fail: function(res) {
+            console.log(res.errMsg);
+            console.log('failed');
+          },
+          complete: function(res) {
+            console.log(res.errMsg);
+            console.log('completa')
+          }
+        })
+      }
     })
   }
 })

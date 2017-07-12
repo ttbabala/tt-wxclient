@@ -9,7 +9,7 @@
   <image style="width: 30rpx; height: 30rpx;" src="/images/coordinates_fill.png"></image><label>详细位置</label><input type="text" placeholder="{{locationAddress}}" style="margin-left:20rpx"auto-focus />
 </view>
 <view class="section">
-  <image style="width: 30rpx; height: 30rpx;" src="/images/camera_fill.png"></image><label>现场图片&视频</label><view style="font-size:28rpx;color:#8B8B8B;height:64rpx;line-height:64rpx;margin-left:20rpx">您还未上传任何图片或视频...</view><view style="margin-left:20rpx"><button type="primary" size="mini" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="primary" style="margin-right:20rpx;">现在上传图片</button>
+  <image style="width: 30rpx; height: 30rpx;" src="/images/camera_fill.png"></image><label>现场图片&视频</label><view style="font-size:28rpx;color:#8B8B8B;height:64rpx;line-height:64rpx;margin-left:20rpx">您还未上传任何图片或视频...</view><view style="margin-left:20rpx"><button type="primary" size="mini" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="uploadImage" style="margin-right:20rpx;">现在上传图片</button>
   <button type="primary" size="mini" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="primary">现在上传视频</button></view>
 </view>
 <view class="section">

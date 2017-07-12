@@ -2,6 +2,7 @@
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
+    console.log('onLaunch');
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
@@ -26,17 +27,17 @@ App({
                 success: function(info){
                   console.log(info.data)
                   wx.setStorageSync('3rdsession',info.data);                 
-                  var session3rd = wx.getStorageSync('3rdsession');
+                  //var session3rd = wx.getStorageSync('3rdsession');
                   wx.request({
                         url: 'https://root.com/tt-server/manage/weixin/getSe3',
                         data:{
-                             se3 : session3rd
+                             se3 : info.data
                         },
                         header:{
                             'content-type': 'application/json'
                         },
                         success: function(res_sk){
-                          console.log(res_sk.data)
+                          console.log(res_sk.data) //session_key
                           if(res_sk.data !== 0){
                                 wx.getUserInfo({
                                 withCredentials: true,
@@ -60,14 +61,22 @@ App({
                                             'content-type': 'application/json'
                                           },
                                           success:function(res){
-                                            that.globalData.userInfo = res.data
-                                            console.log(res.data)
+                                            if(res.data == 'false'){
+                                                console.log('登陆状态已经过期，请重新登陆')
+                                            }else{
+                                                that.globalData.userInfo = res.data
+                                                console.log(res.data)
+                                            }
                                          }
                                       })
                                     }                            
                                   })
                               }else{
-                                 console.log('您的登陆状态已过期！');
+                                wx.showToast({
+                                  title: '您的登陆状态已过期！',
+                                  icon: 'success',
+                                  duration: 2000
+                                })
                               }
                             }
                           })
